@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isQuiz } from "./quizValidation";
 import QuizLegend from "./QuizLegend";
+import "../../css/index.css";
 
 function Index() {
 	const [uploadError, setUploadError] = useState("");
@@ -96,19 +97,22 @@ function Index() {
 	}
 
 	return (
-		<section className="index-menu">
+		<main className="index-menu">
 			<ol>
 				<li>Upload <b>valid</b> quiz structure [.json]</li>
 				<li>Start quiz selecting quiz mode</li>
 			</ol>
 
-			<input type="file" id="index-json-input" accept=".json" onChange={handleUpload}/>
-			{uploadError ? <ErrorField msg={uploadError}/> : ""}
+			<section>
+				<h3>Upload Quiz</h3>
+				<input type="file" id="index-json-input" accept=".json" onChange={handleUpload}/>
+				{uploadError ? <ErrorField msg={uploadError}/> : ""}
+			</section>
 
 			{isValidQuiz ? <StartQuizMenu/> : ""}
 
 			<QuizLegend/>
-		</section>
+		</main>
 	);
 }
 

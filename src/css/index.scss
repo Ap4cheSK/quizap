@@ -1,0 +1,21 @@
+.upload-err {
+	background: red;
+	color: white;
+	text-shadow: 0px 0px 5px black;
+	font-weight: 900;
+	padding: 4px 8px;
+	border-radius: 4px;
+}
+
+.index-quiz-legend {
+	display: grid;
+	grid-auto-flow: row;
+	gap: 16px;
+
+	.legend-item {
+		display: grid;
+		grid-auto-flow: row;
+		gap: 4px;
+		padding: 4px;
+	}
+}

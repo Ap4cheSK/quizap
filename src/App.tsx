@@ -10,16 +10,14 @@ function App() {
 	return (
 		<>
 			<Header/>
-			<main>
-				<HashRouter>
-					<Routes>
-						<Route index path="/" element={<Index/>}/>
-						<Route path="/test" element={null}/>
-						<Route path="/*" element={<Error errNum={404}/>}/>
-						<Route path="*" element={<Error errNum={404}/>}/>
-					</Routes>
-				</HashRouter>
-			</main>
+			<HashRouter>
+				<Routes>
+					<Route index path="/" element={<Index/>}/>
+					<Route path="/test" element={null}/>
+					<Route path="/*" element={<Error errNum={404}/>}/>
+					<Route path="*" element={<Error errNum={404}/>}/>
+				</Routes>
+			</HashRouter>
 			<Footer/>
 		</>
 	)
