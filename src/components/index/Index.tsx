@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isQuiz, Quiz } from "./quizValidation";
+import { isQuiz, quiz } from "../quizValidation";
 import QuizLegend from "./QuizLegend";
 import "../../css/index.css";
 
-function Index({setData}: {setData: React.Dispatch<React.SetStateAction<Quiz | undefined>>}) {
+function Index({setData}: {setData: React.Dispatch<React.SetStateAction<quiz | undefined>>}) {
 	const [uploadError, setUploadError] = useState("");
 	const [fileContent, setFileContent] = useState<string>("");
 	const [isValidQuiz, setIsValidQuiz] = useState(false);

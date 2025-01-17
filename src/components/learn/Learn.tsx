@@ -1,5 +1,5 @@
 import { Error } from "../Error";
-import { Quiz } from "../index/quizValidation";
+import { Quiz } from "../quizValidation";
 
 function Learn({quizData}: {quizData: Quiz}) {
 	if(quizData === undefined) {

@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isStringArray(data: any): boolean {
+function isStringArray(data: unknown): boolean {
 	if (!Array.isArray(data)) {
 		return false;
 	}
@@ -22,17 +21,25 @@ function isQuestion(data: any): boolean {
 }
 
 // EXPORT
-export type Question = {
+export type question = {
 	question: string;
 	correct: string[];
 	incorrect: string[];
 }
 
-export type Quiz = Question[];
+export type quiz = {
+	name: string;
+	questions: question[];
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isQuiz(data: any): boolean {
-	if (!Array.isArray(data))
+	if (typeof data !== "object" || data === null)
 		return false;
-	return data.every(function (item) {return isQuestion(item)});
+	if (typeof data.name !== "string")
+		return false;
+	if (!Array.isArray(data.questions))
+		return false;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	return data.questions.every(function (item: any) { return isQuestion(item); });
 }
