@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isQuiz } from "./quizValidation";
+import { isQuiz, Quiz } from "./quizValidation";
 import QuizLegend from "./QuizLegend";
 import "../../css/index.css";
 
-function Index() {
+function Index({setData}: {setData: React.Dispatch<React.SetStateAction<Quiz | undefined>>}) {
 	const [uploadError, setUploadError] = useState("");
 	const [fileContent, setFileContent] = useState<string>("");
 	const [isValidQuiz, setIsValidQuiz] = useState(false);
@@ -38,7 +38,7 @@ function Index() {
 					return;
 				}
 
-				setFileContent(JSON.parse(content));
+				setFileContent(content);
 			} else
 				setUploadError("Invalid or empty file!");
 		}
@@ -53,12 +53,15 @@ function Index() {
 
 		setUploadError("");
 
-		if(isQuiz(fileContent))
+		const parsedData = JSON.parse(fileContent);
+		if(isQuiz(parsedData)) {
 			setIsValidQuiz(true);
-		else {
+			setData(parsedData);
+		} else {
 			setUploadError("Invalid Quiz Structure!");
 			setIsValidQuiz(false);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fileContent]);
 
 	function handleQuizMode(quizMode: string) {
